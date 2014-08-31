@@ -1,9 +1,10 @@
--NodeJS-1
+NodeJS-1
 =========
 
 The repository for the Web Programming with NodeJS course at http://hackbulgaria.com
 
-Course overview(draft)
+## Course Program (draft version - will be updated over time)
+
  * JavaScript retrospection, functional paradigms.
  * v8 and node. JavaScript interpreters
  * Web - HTTP(S). Writing a simple node app to answer HTTP requests.
