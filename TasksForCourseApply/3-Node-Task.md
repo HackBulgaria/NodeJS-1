@@ -1,4 +1,4 @@
-##The node task
+# The node task (optional)
 
 [https://github.com/asotirov/that-node-task](https://github.com/asotirov/that-node-task) 
 
@@ -9,3 +9,7 @@ Some methods are left unimplemented and your task is to complete them, so the pr
 Full details are available in the **README.md** of the repository.
 
 Good luck!
+
+## Optional task
+
+You can apply without solving this problem. But if you manage to solve it, this will help you in the interview process :)
