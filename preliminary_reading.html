@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Awesome Presentation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center
+![hackbg](src/img/HackBG-logo.png)
+![node](src/img/node.png)
+
+---
+
+# First 
+
+If we want to learn node, we need it installed
+
+We highly recommend using a Unix-like system(linux/os x/\*bsd).
+
+Windows will also work, but troubles are expected. ( node on cygwin is no longer supported )
+
+---
+
+## Linux and OS X
+#### nvm
+
+```bash
+curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | bash
+```
+
+In your shell type
+
+```bash
+nvm use 0.10
+```
+
+Or find the relevant part of your shell's rc file and add `nvm use 0.10 2>&1 >/dev/null`
+
+---
+
+## Windows
+Go to the [download section](http://nodejs.org/download/) of the node.js site and download the msi for your system.
+
+---
+
+# Retrospective
+
+ * Numbers
+ * Strings
+ * Lists
+ * Objects
+ * OOP
+
+---
+
+# Numbers
+
+```javascript
+    var one = 1;
+    var almost_pi = 3.14;
+    var almost_e = 2.78;
+    var alot = 14235 * 13452 * 19483;
+
+    typeof one === typeof almost_pi; //true
+    typeof almost_pi === typeof almost_e; //true
+    typeof almost_e === typeof alot; //true
+```
+
+There are no distinct int, float, double etc. They're all instances of `Number`.
+
+---
+
+# Strings
+
+```javascript
+    var place='Hack Bulgaria';
+    var course = 'node.js';
+
+    place + ': ' + course; // 'Hack Bulgaria: node.js'
+```
+
+---
+
+# Strings
+
+`String.prototype.slice`
+
+```javascript
+    place.slice(0,4); // 'Hack'
+    place.slice(5); // 'Bulgaria'
+    place.slice(5, 3); // ''
+```
+
+`String.prototype.substr`
+
+```javascript
+    place.substr(5); // 'Bulgaria'
+    place.substr(0, 4); // 'Hack'
+    place.substr(5, 3); // 'Bul'
+```
+
+`String.prototype.concat`
+
+```javascript
+    place.concat(': ').concat(course); // 'Hack Bulgaria: node.js'
+```
+
+`String.prototype.split`
+
+```javascript
+    place.split(); // 'Hack Bulgaria'
+    place.split('a'); // [ 'H', 'ck Bulg', 'ri', '' ]
+```
+
+---
+
+# Lists
+
+```javascript
+    var people = [ 'Evgeni', 'Tony', 'Rado' ];
+    people[0]; // 'Evgeni'
+    people[1]; // 'Tony'
+    people[2]; // 'Rado'
+
+    people.length; // 3
+```
+
+Lists don't go the other way around. **Indexing them is no different than accessing a property**.
+
+```javascript
+    people[-1]; // undefined
+```
+
+```javascript
+    var grand_chamber = people.concat([ 'Ziltoid', 'Captain Spectacular' ]);
+    grand_chamber.slice(3, 5); // [ 'Ziltoid', 'Captain Spectacular' ]
+    grand_chamber.splice(1, 2, 'Tall Latte'); // [ 'Tony', 'Rado' ]
+    grand_chamber; //  [ 'Evgeni', 'Tall Latte, 'Ziltoid', 'Captain Spectacular' ]
+```
+
+---
+
+# Functions
+
+```javascript
+    function sum_of_two(a, b) {
+      return a + b;
+    }
+
+    sum_of_two(5, 8); // 13
+```
+
+```javascript
+    var sum_of_many = function () {
+      Array.prototype.reduce.call(arguments, sum_of_two);
+    };
+
+    sum_of_many(4, 5, 1,3); // 13
+```
+
+---
+
+class: center
+# Objects
+
+ * Everything in JavaScript is an object
+ * **Object** Oriented Programming does not need to be **class** oriented
+
+---
+
+# Literal objects
+
+```javascript
+    var student = {
+        name: 'Pencho',
+        age: 22,
+        points: [80, 23, 70],
+    }
+```
+
+---
+
+# Constructors and "classes"
+
+```javascript
+    function Animal(name, species) {
+      this.name = name;
+      this.species = species;
+    }
+
+    Animal.prototype.greet = function() {
+      switch(this.species) {
+        case 'dog':
+          console.log('bark');
+          break;
+        case 'cat':
+          console.log('meow');
+          break;
+        case 'panda':
+          console.log('panda roar');
+          break;
+        default:
+          console.log('generic mumbling');
+      }
+    };
+```
+
+---
+
+# Inheritance
+
+```javascript
+    function Animal(name) {
+      this.name = name;
+    }
+
+    Animal.prototype.eat = function () {
+      console.log(this.name.concat(" is enjoying a meal"));
+    };
+
+    function Panda(name) {
+      Animal.call(this, name);
+    }
+
+    Panda.prototype = new Animal();
+
+    Panda.prototype.greet = function () {
+      console.log('panda roar');
+    };
+```
+
+---
+
+# Inheritance
+
+```javascript
+    function Animal(name) {
+      this.name = name;
+    }
+
+    Animal.prototype.eat = function () {
+      console.log(this.name.concat(" is enjoying a meal"));
+    };
+
+    Animal.prototype.greet = function () {
+      console.log(this.greeting);
+    };
+
+    function Panda(name) {
+      Animal.call(this, name);
+    }
+
+    Panda.prototype = Object.create(Animal.prototype);
+    Panda.prototype.constructor = Panda // wut?
+    Panda.prototype.greeting = 'panda roar';
+```
+
+---
+
+# (Intro to) Meta Programming
+`Object.create`
+
+```javascript
+    var guitar = {
+      manufacturer: 'Gibson Guitar Corporation',
+      function: pluck (string, fret) {
+        return this.string_tone[string] + fret;
+      }
+    }
+
+    les_paul = Object.create(guitar, {
+      model: 'les_paul'
+    });
+```
+
+---
+
+`Object.defineProperty`
+
+```javascript
+    Object.defineProperty(guitar, 'string_tone', {
+      value: [ undefined, 64 ,59, 55, 50, 45, 40 ],
+      enumerable: true,
+    });
+```
+
+#### common
+ * configurable
+ * enumerable
+
+#### data descriptors
+
+ * value
+ * writable
+
+#### accessor descriptors
+
+ * get
+ * set
+
+
+    </textarea>
+    <script src="src/remark.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
