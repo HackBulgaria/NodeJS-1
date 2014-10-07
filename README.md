@@ -3,24 +3,52 @@ NodeJS-1
 
 The repository for the Web Programming with NodeJS course at http://hackbulgaria.com
 
-## Course Program (draft version - will be updated over time)
+## Course Program, split over weeks
 
- * JavaScript retrospection, functional paradigms.
- * v8 and node. JavaScript interpreters
- * Web - HTTP(S). Writing a simple node app to answer HTTP requests.
- * Asynchronous programming. Paradigms and quirks. Callbacks(including the hell).
- * Working with the file system. Asynchronous vs. synchronous file operations.
- * Events, EventEmitter.
- * Node Package Manager. Installing modules with npm and tracking dependencies with package.json
- * The `module` object. Decomposing an app into several files/modules.
- * Fighting callback hell 1. The `async` module.
- * Fighting callback hell 2. Promises and how to use them in node.(Q, Promise, etc.)
- * Creating a simple terminal emulator using node.
- * Sockets and protocols. Using the `http` module to create an HTTP API.
- * Wrap the `http` module to make it a bit more friendly to use.
- * Building web apps with ExpressJS.
- * MongoDB and Mongoose
- * Continuous communication between server and client. Long polling, WebSockets, socket.io. Make a real-time multiplayer game server.
+## week0:
+
+* We are going to start using `node` and `npm` and `nvm` by doing simple console-based NodeJS applications.
+* We are going to show Node Inspector for Node debugging
+
+## week1:
+
+* What is Node all about? Single threaded app & Event Loop & Thread pools
+* First steps in HTTP with `express`
+
+## week2:
+
+* A+ Promises in Node (Q.js / async)
+* Problems with express and external APIs to use
+
+## week3:
+
+* Introduction to Mongo and mongoose / mongoose-q
+* Basic CRUD applications
+
+## week4:
+
+* Headless browsers & scrapping - PhantomJS / CasperJS / Nightmare
+* Testing web applications
+
+## week5:
+
+* Passport for web apps - having users in our app
+* Mongo aggregation & making some simple statistics & dashboards
+
+## week6:
+
+* Streams & Stream API
+* Sockets (TCP/IP) + JSON protocol implementation
+* WebSockets
+
+## week7:
+
+* Introduction to Node Cluster API - scaling things
+* Introduction to Redis - simple communication between clusters
+
+## week8:
+
+* Adding AI to our web application
 
 ## Slides
 The slides from the courses can be found on [the GitHub page of the course](http://hackbulgaria.github.io/NodeJS-1/)
