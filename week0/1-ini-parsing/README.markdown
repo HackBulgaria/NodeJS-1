@@ -61,3 +61,7 @@ Once we know how to convert `.ini` to `.json` it would be nice to have it work b
 Using the [argparse](https://github.com/nodeca/argparse) module add the capability to explicitly state the type of the file we are giving. Add an argument `--type` which can be either `ini` or `json` and tells the type of the input file given.
 
 So we could call `node our_script.js typeless_config --type=ini`. That invocation should mean that `typeless_config` is actually an ini file.
+
+### Testing your solution
+
+This directory has a `package.json` file defining the tools needed to test your solution. Assuming your code is in `solution.js` if you run `node test` will run a small test suite on it, testing with the two local files.
