@@ -3,7 +3,7 @@ var child_process = require('child_process'),
 
 
 function testWithFile(fileName, expected) {
-  var process = child_process.spawn('./solution.js', [fileName]);
+  var process = child_process.spawn('node', ['./solution.js', fileName]);
 
   process.on('error', function (error) {
     console.error('Error');
