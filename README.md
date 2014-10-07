@@ -21,3 +21,6 @@ The repository for the Web Programming with NodeJS course at http://hackbulgaria
  * Building web apps with ExpressJS.
  * MongoDB and Mongoose
  * Continuous communication between server and client. Long polling, WebSockets, socket.io. Make a real-time multiplayer game server.
+
+## Slides
+The slides from the courses can be found on [the GitHub page of the course](http://hackbulgaria.github.io/NodeJS-1/)
