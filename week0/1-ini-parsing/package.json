@@ -1,0 +1,17 @@
+{
+  "name": "1-ini-parsing",
+  "version": "0.0.0",
+  "description": "first task for nodejs course @ hack bulgaria",
+  "main": "solution.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.9.2"
+  },
+  "dependencies": {
+    "argparse": "^0.1.15"
+  }
+}
