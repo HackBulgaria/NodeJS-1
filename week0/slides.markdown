@@ -146,7 +146,7 @@ If using `nvm` or `n` you can simply invode `npm install -g <some-package>`. If 
 
 ---
 
-# http
+# http(https)
 ```javascript
   var http = require('http');
   http.get('http://some.awesome.place.com/interesting_thin.gz', function(res) {
@@ -155,3 +155,7 @@ If using `nvm` or `n` you can simply invode `npm install -g <some-package>`. If 
     });
   });
 ```
+
+# API documentation
+
+http://nodejs.org/api
