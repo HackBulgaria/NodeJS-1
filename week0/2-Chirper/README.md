@@ -154,4 +154,3 @@ curl -H "Content-Type: application/json" --data @body.json http://localhost:8080
 ```
 
 Where `body.json` is local file.
-For more options, check here - curl -H "Content-Type: application/json" --data @body.json http://localhost:8080/ui/webapp/conf
