@@ -2,7 +2,7 @@
 
 Using the `http` module write a Chirpr(über innovative naming right there!) - a twitter-like service.
 
-### The Chirp API
+## The Chirp API
 
 We want to be able to make the following calls:
 
@@ -143,6 +143,15 @@ $ node chirp_client.js --delete --chirpid=12
 
 This call requires `user` and `key` in `config.json`
 
-# NB
+## NB
 
 We're going extreme NODB! Keep all your data in-memory.
+
+You can use this to make JSON curl requests:
+
+```
+curl -H "Content-Type: application/json" --data @body.json http://localhost:8080/
+```
+
+Where `body.json` is local file.
+For more options, check here - curl -H "Content-Type: application/json" --data @body.json http://localhost:8080/ui/webapp/conf
