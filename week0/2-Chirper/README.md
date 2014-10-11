@@ -7,7 +7,7 @@ Using the `http` module write a Chirpr(über innovative naming right there!) - a
 We want to be able to make the following calls:
 
  * `GET /all_chirps` - returns all the chirps for all the users we have. Newest chirps should be first.
- * `POST /chirp` - expects `user`, `key` and `chirpText` arguments. Creates a new chirp on behalf of `user`
+ * `POST /chirp` - expects `user`, `key` and `chirpText` arguments. Creates a new chirp on behalf of `user` and returns a `chirpId`, which should be unique for every chirp!
  * `POST /register` - expects `user` as argument. Creates a new user and returns a `key` for that user. If the user already exists just returns a 409 response code.
  * `GET /my_chirps` - expects `user` and `key` as arguments. Returns all chirps of `user`
  * `DELETE /chirp` - expects `key` and `chirpId` as arguments. Deletes the chirp with the given id if the key matches the key of the chirp owner. Otherwise returns a 403 response code.
