@@ -113,3 +113,7 @@ $ node chirp_client.js --delete --chirpid=12
 ```
 
 This call requires `user` and `key` in `config.json`
+
+# NB
+
+We're going extreme NODB! Keep all your data in-memory.
