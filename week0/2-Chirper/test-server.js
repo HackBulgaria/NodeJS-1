@@ -13,16 +13,16 @@ http.createServer(function (req, res) {
   }
 
   req.on('data', function(chunk) {
-        console.log("Received body data:");
-        console.log(chunk.toString());
-        payload += chunk.toString();
+    console.log("Received body data:");
+    console.log(chunk.toString());
+    payload += chunk.toString();
   });
 
   req.on('end', function() {
-        console.log(JSON.parse(payload));
-        // empty 200 OK response for now
-        res.writeHead(200, "OK", {'Content-Type': 'text/html'});
-        res.end("PANDATIGAN");
+    console.log(JSON.parse(payload));
+    // empty 200 OK response for now
+    res.writeHead(200, "OK", {'Content-Type': 'text/html'});
+    res.end("PANDATIGAN");
   });
 
 }).listen(8080);
