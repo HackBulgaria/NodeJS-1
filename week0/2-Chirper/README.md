@@ -8,9 +8,11 @@ We want to be able to make the following calls:
 
  * `GET /all_chirps` - returns all the chirps for all the users we have. Newest chirps should be first.
  * `POST /chirp` - expects `user`, `key` and `chirpText` arguments. Creates a new chirp on behalf of `user` and returns a `chirpId`, which should be unique for every chirp!
+ * `GET /all_users` - returns all the registered users.
  * `POST /register` - expects `user` as argument. Creates a new user and returns a `key` for that user. If the user already exists just returns a 409 response code.
  * `GET /my_chirps` - expects `user` and `key` as arguments. Returns all chirps of `user`
  * `DELETE /chirp` - expects `key` and `chirpId` as arguments. Deletes the chirp with the given id if the key matches the key of the chirp owner. Otherwise returns a 403 response code.
+ * `GET /chirps` - expects either `chirpId` or `userId` as an argument. If given both ignores `chirpId`. Returns a list of chirps.
 
 Some specification:
 
@@ -18,6 +20,33 @@ Some specification:
 * `key` should be a unique string for each user
 * **The arguments to the API calls should be in JSON format!**
 * **All returns should be in JSON format!**
+
+### Formats
+
+`/chirps`, `/all_chirps` and `/my_chirps` should return a json list with objects for the chirps:
+
+```json
+[
+    {
+        "userId": 12,
+        "chirpId": 48,
+        "chirpText": "Търсим нов служител. Нужно е да е наполовина човеко-прасе, наполовина - мечка. Желание за работа с #WordPress е многу от съществено значка.",
+        "chirpTime": "10-10-2014 12:54"
+    }
+]
+```
+
+`/all_users` should return a list of objects for all the registered users with their id, name and the number of chirps they have.
+
+```json
+    [
+        {
+            "user": "Stancho",
+            "userId": 31,
+            "chirps": 43,
+        }
+    ]
+```
 
 ### Testing things out
 
