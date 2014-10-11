@@ -1,6 +1,4 @@
-# Week 1
-
-## Twitter clone in a single process
+# Twitter clone in a single process
 
 Using the `http` module write a Chirpr(über innovative naming right there!) - a twitter-like service.
 
