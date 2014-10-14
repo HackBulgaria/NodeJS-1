@@ -1,0 +1,16 @@
+{
+  "name": "chirp",
+  "version": "1.0.0",
+  "description": "Express is a nodejs web framework. It's a nice way to write web APIs or full blown web applications without having to bother with all the hassle of working directly with the `http` module's interface.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "^4.9.7",
+    "generate-key": "0.0.6"
+  }
+}
