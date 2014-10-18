@@ -106,7 +106,7 @@ You can have:
 
 ```json
 {
-    "type": ["story, comment"]
+    "type": ["story", "comment"]
 }
 ```
 
