@@ -19,6 +19,7 @@ We are going to have:
 * A subscriber to manage emails & keywords
 * A notifier to send emails about new threads
 * A scraper, that communicates with the HackerNews API
+* A scraper, that wants to read the entire HackreNews over time
 
 ## Subscriber
 
@@ -150,12 +151,23 @@ Two important things:
 
 If the notifier has found a subscriber, that is interested in a comment and there is new comment from HackerNews, use the following mechanism:
 
-* Find the story, that is parent of that comment. **Keep in mind that there are parents for comments that are also comments, so you have to walk up the tree until you find a `type: "story"` key.
+* Find the story, that is parent of that comment. **Keep in mind that there are parents for comments that are also comments, so you have to walk up the tree until you find a `type: "story"` key.**
 * With the comment in the email, add a link to the story, so the user can track from where it came.
 
 An example comment with parent comment is that - https://hacker-news.firebaseio.com/v0/item/2922097.json?print=pretty
 
-You have to go up to parents, to get to the story!
+You have to go up the parents, to get to the story!
+
+#### Design decisions
+
+Give it a good tought:
+
+* You can make API calls from the Notifier - this will introduce new dependencies
+* You can scrape the entire tree for the comment and add it to the database - this will make the scraping harder
+* You can add API endoints to the Scraper so it can get parent stories  for a comment - again, that way, Notifier will know about the scraper
+* You can decouple the Notifier and the Scraper by adding layer between them. This will make the entire architecture more complex.
+
+There is no right way, so it is up to you to decide!
 
 ### Note on *periodically reads*
 
@@ -219,3 +231,33 @@ Keep in mind that HTTP get requests are async and you should fetch new article o
  * [express](http://expressjs.com/)
  * [node-persist](https://github.com/simonlast/node-persist)
  * [Nodemailer](https://github.com/andris9/Nodemailer)
+
+## The Scraper that wants to read the entire HackerNews
+
+We are going to have a 4th application, that wants to read the entire HackerNews, generating and index of keywords that are occuring the most.
+
+We are going to make a histogram of the entire HackerNews and update a file called `histogram.json`, where we keep the following things:
+
+```json
+    "keyword": # of occurences so far
+```
+
+### What is the idea?
+
+* Start from the very beginning of time with id = 1 (https://hacker-news.firebaseio.com/v0/item/1.json?print=pretty)
+* Poll over time (lets say10-20 seconds) for the next id
+* **Keep track which was the last id in case we stop this scraper and run it later again!**
+
+### What to read?
+
+**Read everything you can** - comments, stories, titles, bodies - look for every source of text you can get from the API.
+
+In order to extract the keywords, you can use the following library - https://github.com/NaturalNode/natural
+
+There is a tokenizer that can help.
+
+### API Endpoint to show the results so far
+
+Using express, create a simple GET endpoint "/keywords" that returns in JSON format the result of scraping HackerNews so far.
+
+That way we can observe the fruits of our labor!
