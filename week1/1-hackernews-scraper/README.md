@@ -80,9 +80,35 @@ You can use [node-persist](https://github.com/simonlast/node-persist) library fo
 
 ### Different types for subscribing
 
-We can subscribe with our keywords only for stories (main articles), comments for those stories or both - stories and comments.
+We can subscribe with your keywords only for stories (main articles), comments for those stories or both - stories and comments.
 
-In the JSON we send, there is a `type` key, that accepts a list of strings, containing `"story"` and `"comment"`.
+In the JSON that is sent, there is a `type` key, that accepts a list of strings, containing `"story"` and `"comment"`.
+
+You can have:
+
+* Only a story
+
+```json
+{
+    "type": ["story"]
+}
+```
+
+* Only a comment
+
+```json
+{
+    "type": ["comment"]
+}
+```
+
+* Or both (order doesn't matter - story, comment or comment, story)
+
+```json
+{
+    "type": ["story, comment"]
+}
+```
 
 Ignore everything else.
 
