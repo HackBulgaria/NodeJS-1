@@ -32,7 +32,7 @@ We want to have a simple service listening for HTTP requests which allows us to 
         "destruction",
         "omniscience"
     ],
-    type: ["story"]
+    "type": ["story"]
 }
 ```
 
