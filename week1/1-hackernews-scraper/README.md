@@ -75,6 +75,20 @@ All data about emails and keywords should be persisted in  `subscribrers.json` f
 
 You can use [node-persist](https://github.com/simonlast/node-persist) library for that.
 
+### Email confirmation for subscriber
+
+It is not a good idea to let everyone subscribe with every email without any verification. This will easily become a spam bot!
+
+So you are going to implement an email-verification mechanism:
+
+* A new user subscribes with a given email - `user@awesome.com`
+* An email is sent to `user@awesome.com` with a **confirmation link** - you should think about how to implement that
+* The user clicks on the confirmation link and he is confirmed.
+
+**Keep in mind that you should not send emails to non-confirmed users!**
+
+We want to avoid spamming innocent souls.
+
 ### API Endpoints for the subscriber
 
 We should have the following API endpoints:
@@ -89,7 +103,10 @@ It *periodically reads* data from a json file containing information about new a
 
 The notifier marks each article as processed once it sends mails about it to all the addresses in the `subscribers.json` file.
 
-**The notifier makes the matching phase between the titles of the articles and the keywords for each subscriber!**
+Two important things:
+
+* **The notifier makes the matching phase between the titles of the articles and the keywords for each subscriber!**
+* **Keep in mind that you should not send emails to non-confirmed users!**
 
 ### Note on *periodically reads*
 
