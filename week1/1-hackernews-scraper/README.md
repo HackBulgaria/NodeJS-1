@@ -31,11 +31,12 @@ We want to have a simple service listening for HTTP requests which allows us to 
         "coffee",
         "destruction",
         "omniscience"
-    ]
+    ],
+    type: ["story"]
 }
 ```
 
-This means that from now on we want to get notified at `ziltoid@4th.dim` for all new HN articles containing any of the words `coffee`, `destruction` or `omniscience`.
+This means that from now on we want to get notified at `ziltoid@4th.dim` for all new HN articles with `story` type, containing any of the words `coffee`, `destruction` or `omniscience`.
 
 **The server should return a unique subscriber id**, which we can use later to unsubscribe from the service:
 
@@ -56,7 +57,8 @@ We can do the following requests:
     "keywords": [
         "meshuggah",
         "planet smasher"
-    ]
+    ],
+    "type": ["comment"]
 }
 ````
 
@@ -65,7 +67,8 @@ We can do the following requests:
     "email": "ziltoid@4th.dim",
     "keywords": [
         "panda destroyer"
-    ]
+    ],
+    "type": ["story", "comment"]
 }
 ```
 
@@ -74,6 +77,14 @@ We will have 3 different subscriber IDs for `ziltoid` and this is fine.
 All data about emails and keywords should be persisted in  `subscribrers.json` file(of course you can call the file anything else).
 
 You can use [node-persist](https://github.com/simonlast/node-persist) library for that.
+
+### Different types for subscribing
+
+We can subscribe with our keywords only for stories (main articles), comments for those stories or both - stories and comments.
+
+In the JSON we send, there is a `type` key, that accepts a list of strings, containing `"story"` and `"comment"`.
+
+Ignore everything else.
 
 ### Email confirmation for subscriber
 
@@ -96,6 +107,7 @@ We should have the following API endpoints:
 * `POST /subscribe` - as explained above, this creates a new subscriber
 * `POST /unsubscribe` - takes a JSON payload with a single `"subscriberId"` and unsubscribes it if possible
 * `GET /listSubscribers` - returns a list of all subscribers with their emails, ids and keywords. This is great for testing purposes
+* There should be an endpoint for email confirmation!
 
 ## Notifier
 
@@ -107,6 +119,17 @@ Two important things:
 
 * **The notifier makes the matching phase between the titles of the articles and the keywords for each subscriber!**
 * **Keep in mind that you should not send emails to non-confirmed users!**
+
+### Sending emails about comments
+
+If the notifier has found a subscriber, that is interested in a comment and there is new comment from HackerNews, use the following mechanism:
+
+* Find the story, that is parent of that comment. **Keep in mind that there are parents for comments that are also comments, so you have to walk up the tree until you find a `type: "story"` key.
+* With the comment in the email, add a link to the story, so the user can track from where it came.
+
+An example comment with parent comment is that - https://hacker-news.firebaseio.com/v0/item/2922097.json?print=pretty
+
+You have to go up to parents, to get to the story!
 
 ### Note on *periodically reads*
 
@@ -129,7 +152,7 @@ The most complex part of our setup is going to be the scraper which will poll th
 
 We'll poll for the latest [maxitem](https://hacker-news.firebaseio.com/v0/maxitem) from the API and decide which items we want to fetch. To make the decision easier we want to keep the last `maxitem` in our `articles.json` file.
 
-We're only interested in items with `item['type'] === 'story'`, those are the main articles.
+We're interested in items with `item['type'] === 'story'` or  `item['type'] === 'comment'` - both in main articles and comments
 
 **Once the scrapre polls & saves the articles, it sends a POST request to the notifier, to wake him up.**
 
