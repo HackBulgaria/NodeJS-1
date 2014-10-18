@@ -10,7 +10,7 @@ First we really wish we wouldn't miss really interesting stories from HN, just b
 
 We'd prefer to be able to just **scrape for new threads about pandas** (you never saw that one coming, did you?). And here's an idea of how to solve our issue, of course trying to maintain a UNIX-style architecture.
 
-**We are going to build 3 separate parts of software to deal with this task.**
+**We are going to build 4 separate parts of software to deal with this task.**
 
 Each of them is pretty capable of working on its own and should we ever decide one of them is ineffective and should be changed or heavily modified, doing so should be practically invisible to the other components.
 
@@ -239,12 +239,14 @@ We are going to have a 4th application, that wants to read the entire HackerNews
 We are going to make a histogram of the entire HackerNews and update a file called `histogram.json`, where we keep the following things:
 
 ```json
+{
     "keyword": # of occurences so far
+}
 ```
 
 ### What is the idea?
 
-* Start from the very beginning of time with id = 1 (https://hacker-news.firebaseio.com/v0/item/1.json?print=pretty)
+* Start from the very beginning of time with `id = 1` (https://hacker-news.firebaseio.com/v0/item/1.json?print=pretty)
 * Poll over time (lets say10-20 seconds) for the next id
 * **Keep track which was the last id in case we stop this scraper and run it later again!**
 
@@ -258,6 +260,6 @@ There is a tokenizer that can help.
 
 ### API Endpoint to show the results so far
 
-Using express, create a simple GET endpoint "/keywords" that returns in JSON format the result of scraping HackerNews so far.
+Using express, create a simple `GET` endpoint `/keywords` that returns in JSON format the result of scraping HackerNews so far.
 
 That way we can observe the fruits of our labor!
