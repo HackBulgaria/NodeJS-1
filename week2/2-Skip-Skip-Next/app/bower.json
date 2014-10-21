@@ -1,0 +1,24 @@
+{
+  "name": "Keywords Dashboard",
+  "version": "0.0.0",
+  "homepage": "https://github.com/HackBulgaria/NodeJS-1",
+  "authors": [
+    "Radoslav RadoRado Georgiev <radorado@hackbulgaria.com>"
+  ],
+  "description": "Simple table for displaying keywords",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.15",
+    "handlebars": "~2.0.0",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0"
+  }
+}
