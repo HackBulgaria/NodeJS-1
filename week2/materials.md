@@ -9,7 +9,7 @@ We are goint to tap into Mongo and Mongoose.
 * In order to install Mongo properly, check this - http://www.mongodb.org/downloads
 * User Interface for exploring Mongo - http://www.mongovue.com/
 * Mongo commands cheat sheet - http://www.mongodbspain.com/wp-content/uploads/2014/03/MongoDBSpain-CheatSheet-p1.jpg
-
+* BigDataBorat Twitter Account - https://twitter.com/BigDataBorat
 ## Importing the test data
 
 Thre is a `dump.zip` file, located in week2 folder.
