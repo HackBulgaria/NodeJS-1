@@ -1,0 +1,54 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        #large-map-canvas {
+            height: 500px;
+            width: 900px;
+            margin: 0;
+            padding: 0;
+            float: right;
+        }
+        #form {
+            float: left;
+            width: 500px;
+        }
+        #small-map-canvas {
+            height: 300px;
+            width: 500px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<fieldset id="form">
+    <legend>Find It</legend>
+    <h3>Where are you?</h3>
+    <div id="small-map-canvas"></div>
+    <div id="positionWrp">
+        <div id="latitude">Click on the map to select where are you</div>
+        <div id="longitude"></div>
+    </div>
+
+    <p>
+    <h3>Details:</h3>
+    <div><label>Range (km): <input type="text" id="range" value="7" style="width: 50px"/><span style="display: none" id="noRangeMsg">Write a range</span></label></div>
+    <div><label>Tags: <input type="text" id="tags"/></label></div>
+    </p>
+
+    <p>
+        <button id="getLocationsBtn">Get locations</button>
+    </p>
+</fieldset>
+<div id="large-map-canvas"></div>
+
+    <h3>Test the map</h3>
+    <button id="test">Test map</button> with [{name: 'TestPoint1', coordinates: [3.363882, 51.044922]}, {name: 'TestPoint2', coordinates: [3.563882, 50.044922]}]
+
+
+
+<script type="text/javascript" src="bower_components/requirejs/require.js" data-main="scripts/app.js"></script>
+</body>
+</html>
