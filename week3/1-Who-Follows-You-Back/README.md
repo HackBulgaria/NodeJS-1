@@ -45,7 +45,10 @@ Using a library of your choice, make a test-suite for testing the `DirectedGraph
 
 Make sure all public methods works just fine - create a test graph and assert if methods work OK.
 
-[You can use Jasmine for Node, in order to test that module.](https://github.com/mhevery/jasmine-node)
+**You can use the following testing libraries:**
+
+* Mocha - https://github.com/mochajs/mocha - as a test runner
+* Chai - http://chaijs.com/ - as an assertion library
 
 ## Who Follows you back?
 
