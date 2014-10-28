@@ -60,6 +60,8 @@ We want to have the following high-level functionality:
 ### Implementation details
 
 * Use the [GitHub API](https://developer.github.com/v3/) to fetch the users that a given users follow.
+* Make sure to create yourself a GitHub Application from your settings and obtain `client_id` and `client_secret`. This is because of API Rate Limiting - https://developer.github.com/v3/rate_limit/
+* Make calls with your `client_id` and `client_secret` in order to have `5000` requests per hour!
 * Make a module / class that takes a given GitHub username and a **depth of the social graph to build**, which uses the `graph.js` module from the previous task.
 
 Be sure not to build graphs with depth `>= 4` - it's going to take forever ;)
@@ -75,7 +77,8 @@ Be sure not to build graphs with depth `>= 4` - it's going to take forever ;)
 
 The app we are building should have the following endpoints:
 
-* `POST `/createGraphFor` - accepts a JSON in the form:
+* `POST /createGraphFor` - accepts a JSON in the form:
+
  ```json
  {
     "username": "kunev",
