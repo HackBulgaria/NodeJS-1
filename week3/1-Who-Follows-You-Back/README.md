@@ -86,7 +86,7 @@ The app we are building should have the following endpoints:
 }
  ```
 
-** and returns a unique graph id, which we will use to query the graph.**
+**and returns a unique graph id, which we will use to query the graph.**
 
 * `GET /graph/{graphId}` - returns the social graph for the given `graphId`. If the graph has not been created yet, return a message that says so.
 
