@@ -41,5 +41,6 @@ You can use whatever libraries you find useful for this task, but here are our r
 * [robots.js](https://github.com/ekalinin/robots.js) - gives you an interface for parsing robots.txt files and checking their rules
 * [node-htmlparser](https://github.com/tautologistics/node-htmlparser) - lets you parse html into an object representing the DOM
 * [node-soupselect](https://github.com/harryf/node-soupselect) - lets you use css selectors on the object produced by node-htmlparser
---
+
+---
 * [Q](https://github.com/kriskowal/q) - if things are about to turn into a callback hell, refactor a bit and use a deferred, it always helps to make code more readable.
