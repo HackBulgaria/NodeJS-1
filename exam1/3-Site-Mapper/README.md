@@ -10,18 +10,18 @@ It needs to have the following endpoints:
 * `GET` `/sitemap` - accepts JSON requests with one key `"id"`, to get the site map for that site. The possible return values are:
   * if the crawling has not yet finished: `{"status": "currently crawling"}`
   * if it's finished:
-    ```javascript
+```javascript
+{
+  "status": "done",
+  "sitemap": [
     {
-      "status": "done",
-      "sitemap": [
-        {
-          "url": "http://reddit.com", // this url
-          "links": […], // holds links to these urls
-        },
-        …
-      ]
-    }
-   ```
+      "url": "http://reddit.com", // this url
+      "links": […], // holds links to these urls
+    },
+    …
+  ]
+}
+```
 
 ## Notes
 
