@@ -2,7 +2,7 @@
 
 The task is to expose an HTTP API for requesting site maps.
 
-## Ednpoints
+## Endpoints
 
 It needs to have the following endpoints:
 
@@ -30,6 +30,9 @@ If we send a request to `/map` for generating a site map for a URL we've already
 
 ### Don't go too deep
 Site maps could get quite big, so limit them to 500 links in total. This means the response to `/sitemap` should have a `"sitemap"` property with length of no more than 500.
+
+### Don't crawl outside the domain
+If the starting url given is `http://reddit.com/r/nodejs` than you should only make requests to links from it pointing to other things on `reddit.com`. `http://reddit.com/r/javascript` is OK. `http://dev.reddit.com` is OK. Anything on `http://news.ycombinator.com` is not OK
 
 ### robots.txt
 Respect a site's [robots.txt](http://www.robotstxt.org/) when crawling it to build a site map.
