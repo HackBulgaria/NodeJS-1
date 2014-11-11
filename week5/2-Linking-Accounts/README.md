@@ -12,13 +12,13 @@ You can use this - https://github.com/jaredhanson/passport-github
 
 Once you have logged in, there should be a choice for the user to link more social accounts. Because moar!
 
-### Connect Facebook
+### Connect to Facebook
 
 Once you are ready, connect your Facebook account to the web app and get the user information!
 
 You can use this - http://passportjs.org/guide/facebook/
 
-### Linking Twitter
+### Connect to Twitter
 
 Once you are ready, connect your Twitter account to the web app and get the user information!
 
@@ -27,3 +27,7 @@ You can use this - http://passportjs.org/guide/twitter/
 ## Problems to solve
 
 Should you have an independent User model and just link facebook and twitter account models to it or use one of the two as a "master" account and just link the second one?
+
+## Making it more beautiful
+
+There are social login bootstrap buttons here - http://lipis.github.io/bootstrap-social/ - you can use them.
