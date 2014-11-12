@@ -67,7 +67,7 @@ The input data could potentially be very big. Think of a good way to divide it i
         [0,   1, 0]
       ];
 
-    convolution.monochrome(xMarksTheSpot, verticalBlur)
+    convolution.monochrome.applyKernel(xMarksTheSpot, verticalBlur)
       .then(function (blurredX) {
         // [  0,   1,   0],
         // [1.5,   0, 1.5],
