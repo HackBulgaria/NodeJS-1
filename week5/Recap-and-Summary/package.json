@@ -1,0 +1,16 @@
+{
+  "name": "Recap-and-Summary",
+  "version": "1.0.0",
+  "description": "Simple recap & summary scripts for what we know so far",
+  "main": "scrape-urls.js",
+  "dependencies": {
+    "q": "^1.1.1",
+    "request": "^2.48.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
