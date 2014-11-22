@@ -16,3 +16,6 @@ Your task is to establish a connection to the server in `streamer.js` and save t
 Write each frame you get from the server as a separate png file.
 
 You can use the [png node module](https://www.npmjs.org/package/png) or [pngjs](https://www.npmjs.org/package/pngjs) for creating the file.
+
+##Faking a video source
+If you want to use a fake video instance you can look into [v4l2loopback](https://github.com/umlaeute/v4l2loopback), which can create a fake video device for you. Then you just need to feed it some signal, which you could do with gstreamer [as shown here](https://github.com/umlaeute/v4l2loopback/wiki/Gstreamer).
