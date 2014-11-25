@@ -58,4 +58,6 @@ The main chat server could only expose a websocket interface. That way your cons
 
 * [ws](https://www.npmjs.org/package/ws) - an implementation of WebSockets for node
 * [prompt](https://www.npmjs.org/package/prompt) - a nice way to make interactive console applications with node
+* [node-term-ui](https://github.com/jocafa/node-term-ui) - a UI toolkit for console apps
+* [blessed](https://github.com/chjj/blessed) - a curses like library for node in case you're into sleeker text UI
 * [socket.io](http://socket.io) - an abstraction over websockets allowing you to send more complex messages than just text
