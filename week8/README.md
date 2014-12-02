@@ -1,68 +1,100 @@
-#Nodeventures
-
-Your final task will be a bit more ambitious. We want you to build an MMORPG powered by a node back end.
-
-You're free to choose a theme and story for your world, anything goes.
-
-What we want you to do is design a nice API both for real time data(hero movement, battles, item exchange, etc.…) and for some one-off requests(fetching avatars, history of events, etc.…).
-
-Feel free to split your implementation into as many node applications as you feel are needed.
+class: center, middle
+#Fork it…
 
 ---
-
-##Required functionality
-###World navigation
-You have a world, potentially endless, that your players get to explore and walk around. It's a 2D plane, nothing too fancy.
-
-You should have some abstraction for buildings(houses, castles, space stations, whatever you like). Heroes and items could either be in the open world, or inside a building. Buildings might not always be accessible, or might require the possession of a certain item to enter them.
+class:center, middle
+#`child_process`
 
 ---
-
-###Items
-Items can be scattered around the world, including inside buildings. Heroes can acquire items by either finding them in the world, or trading with other heroes.
-
-Each item has a weight. A hero should only be able to carry around up to a certain amount of items based on their collective weight.
-
-####Boost items
-Some items boost heroes' stats when they acquire them. Once the hero sells the item or loses it in battle the effect of acquiring it is reverted.
-
-A good idea is to have items enhancing your max health, or granting you additional armour. Some items might work over time, restoring your health a little over some period of time.
-
-####Weapons
-Some items are weapons. That means they have some amount of damage they inflict to the enemy they are used on.
-
-####Passive items
-Items might not boost a hero's stats if they server another purpose(e.g. unlocking buildings).
+#`child_process`
+A module allowing us to start separate node applications, or just run arbitrary commands.
 
 ---
+#`exec`
 
-###Heroes
-####Movement
-Heroes should be able to move around the world freely. The only obstacles should be buildings or other heroes along the way. The possible directions are north, west, east, south and the respective combinations - a total of 8 directions.
+`exec` starts a shell and gives the first argument as a command to that shell
+```javascript
+var command = 'kill $(ps fax | grep [/]usr/lib/firefox/firefox | cut -d" " -f 1)';
+child_process.exec(command, function(error, stdout, stderr) {
+  if (error) {
+    console.log(error);
+    return;
+  }
 
-####Inventory
-Each hero has some type of inventory(a backpack, magical extremely big pockets, etc.…). The inventory has a maximum amount of weight in can handle, it should be finite and might be expanded by acquiring some item.
-
-####Battles
-When two heroes are close enough to each other, or inside the same building, they can engage in a battle. The battle is turn based, on each turn the hero who's attacking gets to choose a weapon from their inventory to use. The battle ends after a certain number of rounds or after one of the heroes' health goes down to zero. In case one of the heroes dies the winner gets to choose among the items possessed by the defeated one and take anything, as long as that doesn't conflict with their inventory limit.
+  console.log(stdout);
+  console.log(stderr);
+});
+```
 
 ---
-###Buildings
-####Mechanics
-A building is essentially a separate world map linked to the main one via its entrance. A building might take up less space on the real world map than is actually accessible from inside it. It can be bigger on the outside/smaller on the inside.
+#`execFile`
+`execFile` runs a file directly diving it command line parameters
 
+```javascript
+var file = 'ls',
+    args = ['-l' '-a'];
+child_process.execFile(file, args, function (error, stdout, stderr) {
+  if (error) {
+    console.log(error);
+    return;
+  }
 
-##Clients
-There should be two types of clients: one running on the command line and one built as a web app.
+  console.log(stdout);
+  console.log(stderr);
+});
+```
 
-Both clients need to just give a good way to communicate with the server and expose it's functionalities. All and any bells and whistles are more than welcome, but they're not the main focus.
+---
+#`child_process.spawn`
+Starts a process and returns an object representing that process.
 
-###Command line
-The command line client can employ any type of interface.
+The returned object has as properties `stdin`(a writable stream), `stdout` and `stderr`(readable streams).
 
-A fully textual client, as a game book, but with some elements of real time action as the world changes not only based upon your actions, but also the actions of other heroes in the world.
+It emits `end` when the process ends, `close` when all streams are closed and `error` in case of some error.
 
-A more graphical command line client employing [blessed](https://github.com/chjj/blessed), [drawille](https://github.com/madbence/node-drawille), [drawille-canvas](https://github.com/madbence/node-drawille-canvas) or [ansi-canvas](https://github.com/TooTallNate/ansi-canvas), showing some sort of graphical representation of the world.
+---
+#`child_process.fork`
+A special case of `spawn` that can be used to run node modules, giving you an interface to communicate between the two processes more conveniently.
 
-###Web app client
-The best idea would be to use a `<canvas>` to draw some state of the world around your hero on it.
+The returned object has a `send` method, allowing you to send messages to the child process. In the child process, the `process` object also has a `send` method allowing it to send data back to the parent object. Both sides of the IPC channel emit a `message` event when the other end `send`s a message.
+
+Messages can me just strings/buffers or instances of some standard "classes".
+
+```javascript
+if (handle instanceof net.Socket) {
+  message.type = 'net.Socket';
+} else if (handle instanceof net.Server) {
+  message.type = 'net.Server';
+} else if (handle instanceof process.binding('tcp_wrap').TCP ||
+           handle instanceof process.binding('pipe_wrap').Pipe) {
+  message.type = 'net.Native';
+} else if (handle instanceof dgram.Socket) {
+  message.type = 'dgram.Socket';
+} else if (handle instanceof process.binding('udp_wrap').UDP) {
+  message.type = 'dgram.Native';
+} else {
+  throw new TypeError("This handle type can't be sent");
+}
+```
+
+---
+class: center, middle
+#`cluster`
+
+---
+class: center, middle
+<big><big><big>Stability: 1 - Experimental</big></big></big>
+
+---
+#`fork`
+Most often you would just call `cluster.fork` to fork your process.
+
+`cluster.isMaster` tells you if you're running in the master process of the cluster or in a worker.
+
+---
+#Sharing servers
+The main feature of the `cluster` module is the ability to share servers.
+
+When a worker calls `server.listen` the parameters are serialized and sent as a message to the master process. If the master process doesn't have a server like the one the worker wants to create it will be created, otherwise the same server will be sent back to the worker.
+
+When several processes bind to the same port your OS can load balance between them. Your code does not need to(and practically can't) do any load balancing, node's internal code does not do any load balancing. It's all the work of your OS. Node processes exchange server objects via node's IPC mechanism.
